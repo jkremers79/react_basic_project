@@ -9,6 +9,7 @@ import {
   SimpleGrid,
   Center,
 } from "@chakra-ui/react";
+import { NutritionLabel } from "../components/ui/NutritionLabel";
 
 export const RecipePage = ({ recipe, clickFn }) => {
   return (
@@ -118,59 +119,40 @@ export const RecipePage = ({ recipe, clickFn }) => {
             <Heading size="s">Total nutrients:</Heading>
 
             <Flex gap={"1.5rem"} flexWrap={"wrap"}>
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.ENERC_KCAL.quantity)}
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  CALORIES
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.ENERC_KCAL.quantity}
+                label="CALORIES"
+              />
 
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.PROCNT.quantity)} g
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  PROTEIN
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.PROCNT.quantity}
+                unit="g"
+                label="PROTEIN"
+              />
 
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.FAT.quantity)} g
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  FAT
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.FAT.quantity}
+                unit="g"
+                label="FAT"
+              />
 
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.CHOCDF.quantity)} g
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  CARBS
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.CHOCDF.quantity}
+                unit="g"
+                label="CARBS"
+              />
 
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.CHOLE.quantity)} mg
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  CHOLESTEROL
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.CHOLE.quantity}
+                unit="mg"
+                label="CHOLESTEROL"
+              />
 
-              <Box>
-                <Text>
-                  {Math.round(recipe.recipe.totalNutrients.NA.quantity)} mg
-                </Text>
-                <Text fontWeight={"bold"} fontSize="xs">
-                  SODIUM
-                </Text>
-              </Box>
+              <NutritionLabel
+                item={recipe.recipe.totalNutrients.NA.quantity}
+                unit="mg"
+                label="SODIUM"
+              />
             </Flex>
           </Flex>
         </SimpleGrid>
