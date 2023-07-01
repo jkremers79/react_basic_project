@@ -7,7 +7,7 @@ export const App = () => {
   const [selectedRecipe, setSelectedRecipe] = useState("");
 
   return (
-    <Box backgroundColor="hsl(111, 40%, 50%)">
+    <Box backgroundColor="hsl(216, 13%, 93%)">
       {selectedRecipe ? (
         <RecipePage clickFn={setSelectedRecipe} recipe={selectedRecipe} />
       ) : (

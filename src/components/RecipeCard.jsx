@@ -31,9 +31,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
         <Flex direction={"column"} alignItems={"center"} gap={"1rem"}>
           <Text fontWeight={"300"}>{recipe.recipe.mealType}</Text>
 
-          <Heading fontFamily={"Quicksand"} size={"md"}>
-            {recipe.recipe.label}
-          </Heading>
+          <Heading size={"md"}>{recipe.recipe.label}</Heading>
 
           {recipe.recipe.dietLabels.length > 0 && (
             <Box>
@@ -80,7 +78,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
                   fontWeight={"300"}
                   marginBottom={"0.5rem"}
                 >
-                  Cautions:
+                  Caution:
                 </Text>
               </Center>
 
