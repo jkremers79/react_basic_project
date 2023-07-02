@@ -4,8 +4,10 @@ import {
   Input,
   Radio,
   RadioGroup,
-  Button,
   Center,
+  Stack,
+  Text,
+  CloseButton,
 } from "@chakra-ui/react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
@@ -19,17 +21,15 @@ export const RecipeListPage = ({ clickFn }) => {
   const handleChange = (event) => setSearchField(event.target.value);
 
   const matchedRecipes = data.hits.filter((recipe) => {
-    return recipe.recipe.label
-      .toLowerCase()
-      .includes(searchField.toLowerCase());
+    const recipeName = recipe.recipe.label;
+
+    return recipeName.toLowerCase().includes(searchField.toLowerCase());
   });
 
   const filteredRecipes = matchedRecipes.filter((recipe) => {
-    if (filterOption !== "") {
-      return recipe.recipe.healthLabels.includes(filterOption);
-    } else {
-      return true;
-    }
+    const healthLabels = recipe.recipe.healthLabels.join(" ");
+
+    return healthLabels.includes(filterOption);
   });
 
   return (
@@ -43,10 +43,9 @@ export const RecipeListPage = ({ clickFn }) => {
       >
         <Heading
           size={{ base: "md", md: "lg" }}
-          color="hsl(214, 8%, 23%)"
           marginBottom={{ base: "0.5rem", md: "3rem" }}
         >
-          Your Recipe App{" "}
+          Winc Recipe App
         </Heading>
 
         <Input
@@ -67,18 +66,22 @@ export const RecipeListPage = ({ clickFn }) => {
           onChange={setFilterOption}
           value={filterOption}
           colorScheme={"green"}
+          marginBottom={"0.75rem"}
         >
-          <Radio value="Vegetarian">Vegetarian</Radio>
-          <Radio value="Vegan" marginLeft={"0.5rem"}>
-            Vegan
-          </Radio>
-          <Radio value="Pescatarian" marginLeft={"0.5rem"}>
-            Pescatarian
-          </Radio>
+          <Center>
+            <Text size="s">Select an optional diatary filter:</Text>
+          </Center>
+          <Stack spacing={4} direction={"row"}>
+            <Radio value="Vegetarian">Vegetarian</Radio>
+            <Radio value="Vegan">Vegan</Radio>
+            <Radio value="Pescatarian">Pescatarian</Radio>
+            {filterOption ? (
+              <CloseButton onClick={() => setFilterOption("")} size={"md"} />
+            ) : (
+              <CloseButton size={"md"} isDisabled="true" />
+            )}
+          </Stack>
         </RadioGroup>
-        <Button onClick={() => setFilterOption("")} size={"sm"}>
-          Reset filter
-        </Button>
       </Center>
 
       <Flex

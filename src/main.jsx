@@ -11,7 +11,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        color: "hsl(214, 8%, 23%)",
+        color: "hsl(220, 9%, 15%)",
       },
     },
   },

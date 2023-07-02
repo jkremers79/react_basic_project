@@ -27,7 +27,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
         objectFit="cover"
         borderTopRadius={"5px"}
       />
-      <CardBody>
+      <CardBody color={"hsl(220, 9%, 15%)"}>
         <Flex direction={"column"} alignItems={"center"} gap={"1rem"}>
           <Text fontWeight={"300"}>{recipe.recipe.mealType}</Text>
 
@@ -88,6 +88,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
                   key={caution}
                   marginLeft={"0.5rem"}
                   fontWeight={"300"}
+                  marginBottom={"0.5rem"}
                 >
                   {caution}
                 </Tag>
