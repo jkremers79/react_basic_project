@@ -52,6 +52,11 @@ export const RecipePage = ({ recipe, clickFn }) => {
 
             <Text marginBottom={"1rem"}>Servings: {recipe.recipe.yield}</Text>
 
+            <Text size={"md"} margin={"2rem 0 2rem 0"}>
+              <Heading size="sm">Mealtype:</Heading>{" "}
+              {recipe.recipe.mealType.join().toUpperCase()}
+            </Text>
+
             <Heading marginBottom={"0.5rem"} size={"s"}>
               Ingredients:
             </Heading>
@@ -72,7 +77,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
                 <Tag
                   key={healthLabel}
                   marginBottom={"0.5rem"}
-                  colorScheme="linkedin"
+                  colorScheme="green"
                   marginRight={"0.5rem"}
                 >
                   {healthLabel}
@@ -90,7 +95,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
                     key={dietLabel}
                     marginRight={"0.5rem"}
                     marginBottom={"0.5rem"}
-                    colorScheme="green"
+                    colorScheme="linkedin"
                   >
                     {dietLabel}
                   </Tag>

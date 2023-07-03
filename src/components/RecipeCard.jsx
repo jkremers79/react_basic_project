@@ -17,6 +17,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
       height="550px"
       backgroundColor="hsl(0, 0%, 96%)"
       onClick={() => clickFn(recipe)}
+      cursor={"pointer"}
       transitionDuration={"200ms"}
       _hover={{ transform: "scale(1.01)" }}
     >
@@ -40,6 +41,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
                   colorScheme={"linkedin"}
                   key={diet}
                   marginLeft={"0.5rem"}
+                  marginBottom={"0.5rem"}
                   fontWeight={"300"}
                 >
                   {diet}
@@ -50,7 +52,11 @@ export const RecipeCard = ({ recipe, clickFn }) => {
 
           <Box>
             {recipe.recipe.healthLabels.includes("Vegetarian") && (
-              <Tag colorScheme={"green"} fontWeight={"300"}>
+              <Tag
+                colorScheme={"green"}
+                fontWeight={"300"}
+                marginLeft={"0.5rem"}
+              >
                 Vegetarian
               </Tag>
             )}

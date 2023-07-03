@@ -7,7 +7,7 @@ import {
   Center,
   Stack,
   Text,
-  CloseButton,
+  Button,
 } from "@chakra-ui/react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
@@ -69,16 +69,28 @@ export const RecipeListPage = ({ clickFn }) => {
           marginBottom={"0.75rem"}
         >
           <Center>
-            <Text size="s">Select an optional diatary filter:</Text>
+            <Text size="s">Set a diatary filter:</Text>
           </Center>
-          <Stack spacing={4} direction={"row"}>
+          <Stack
+            spacing={{ base: "1", md: "4" }}
+            direction={{ base: "column", md: "row" }}
+          >
             <Radio value="Vegetarian">Vegetarian</Radio>
             <Radio value="Vegan">Vegan</Radio>
             <Radio value="Pescatarian">Pescatarian</Radio>
+
             {filterOption ? (
-              <CloseButton onClick={() => setFilterOption("")} size={"md"} />
+              <Button
+                colorScheme="red"
+                onClick={() => setFilterOption("")}
+                size={"sm"}
+              >
+                Reset filter
+              </Button>
             ) : (
-              <CloseButton size={"md"} isDisabled="true" />
+              <Button size={"sm"} isDisabled={true} colorScheme="red">
+                Reset filter
+              </Button>
             )}
           </Stack>
         </RadioGroup>
