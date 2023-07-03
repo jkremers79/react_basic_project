@@ -48,12 +48,17 @@ export const RecipePage = ({ recipe, clickFn }) => {
               {recipe.recipe.label}
             </Heading>
 
-            <Text>Total cooking time: {recipe.recipe.totalTime} minutes.</Text>
+            <Text>
+              Total cooking time:{" "}
+              <Text as={"b"}>{recipe.recipe.totalTime}</Text> minutes.
+            </Text>
 
-            <Text marginBottom={"1rem"}>Servings: {recipe.recipe.yield}</Text>
+            <Text marginBottom={"1rem"}>
+              Servings: <Text as={"b"}>{recipe.recipe.yield}</Text>
+            </Text>
 
             <Text size={"md"} margin={"2rem 0 2rem 0"}>
-              <Heading size="sm">Mealtype:</Heading>{" "}
+              <Text as={"b"}>Mealtype:</Text>{" "}
               {recipe.recipe.mealType.join().toUpperCase()}
             </Text>
 
@@ -121,44 +126,48 @@ export const RecipePage = ({ recipe, clickFn }) => {
               </Box>
             )}
 
-            <Heading size="s">Total nutrients:</Heading>
+            <Box>
+              <Heading size="s" marginBottom={"0.5rem"}>
+                Total nutrients:
+              </Heading>
+              <Flex gap={"1.5rem"} flexWrap={"wrap"}>
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.ENERC_KCAL.quantity}
+                  unit={recipe.recipe.totalNutrients.ENERC_KCAL.unit}
+                  label={recipe.recipe.totalNutrients.ENERC_KCAL.label.toUpperCase()}
+                />
 
-            <Flex gap={"1.5rem"} flexWrap={"wrap"}>
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.ENERC_KCAL.quantity}
-                label="CALORIES"
-              />
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.PROCNT.quantity}
+                  unit={recipe.recipe.totalNutrients.PROCNT.unit}
+                  label={recipe.recipe.totalNutrients.PROCNT.label.toUpperCase()}
+                />
 
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.PROCNT.quantity}
-                unit="g"
-                label="PROTEIN"
-              />
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.FAT.quantity}
+                  unit={recipe.recipe.totalNutrients.FAT.unit}
+                  label={recipe.recipe.totalNutrients.FAT.label.toUpperCase()}
+                />
 
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.FAT.quantity}
-                unit="g"
-                label="FAT"
-              />
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.CHOCDF.quantity}
+                  unit={recipe.recipe.totalNutrients.CHOCDF.unit}
+                  label={recipe.recipe.totalNutrients.CHOCDF.label.toUpperCase()}
+                />
 
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.CHOCDF.quantity}
-                unit="g"
-                label="CARBS"
-              />
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.CHOLE.quantity}
+                  unit={recipe.recipe.totalNutrients.CHOLE.unit}
+                  label={recipe.recipe.totalNutrients.CHOLE.label.toUpperCase()}
+                />
 
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.CHOLE.quantity}
-                unit="mg"
-                label="CHOLESTEROL"
-              />
-
-              <NutritionLabel
-                item={recipe.recipe.totalNutrients.NA.quantity}
-                unit="mg"
-                label="SODIUM"
-              />
-            </Flex>
+                <NutritionLabel
+                  item={recipe.recipe.totalNutrients.NA.quantity}
+                  unit={recipe.recipe.totalNutrients.NA.unit}
+                  label={recipe.recipe.totalNutrients.NA.label.toUpperCase()}
+                />
+              </Flex>
+            </Box>
           </Flex>
         </SimpleGrid>
       </Box>

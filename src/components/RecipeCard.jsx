@@ -84,7 +84,7 @@ export const RecipeCard = ({ recipe, clickFn }) => {
                   fontWeight={"300"}
                   marginBottom={"0.5rem"}
                 >
-                  Caution:
+                  Cautions:
                 </Text>
               </Center>
 
