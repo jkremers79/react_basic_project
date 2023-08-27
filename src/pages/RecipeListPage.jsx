@@ -77,19 +77,15 @@ export const RecipeListPage = ({ clickFn }) => {
             <Radio value="Vegan">Vegan</Radio>
             <Radio value="Pescatarian">Pescatarian</Radio>
 
-            {filterRecipes ? (
-              <Button
-                colorScheme="red"
-                onClick={() => setFilterRecipes("")}
-                size={"sm"}
-              >
-                Reset filter
-              </Button>
-            ) : (
-              <Button size={"sm"} isDisabled={true} colorScheme="red">
-                Reset filter
-              </Button>
-            )}
+            {/* {filterRecipes ? ( */}
+            <Button
+              colorScheme="red"
+              onClick={() => setFilterRecipes("")}
+              size={"sm"}
+              isDisabled={!filterRecipes}
+            >
+              Reset filter
+            </Button>
           </Stack>
         </RadioGroup>
       </Center>
