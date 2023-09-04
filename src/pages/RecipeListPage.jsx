@@ -9,18 +9,19 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
 import { useState } from "react";
+import { useStore } from "../store";
 
 export const RecipeListPage = ({ clickFn }) => {
+  const events = useStore((state) => state.Events);
   const [searchField, setSearchField] = useState("");
 
   const [filterRecipes, setFilterRecipes] = useState("");
 
   const handleChange = (event) => setSearchField(event.target.value);
 
-  const matchedRecipes = data.hits.filter((recipe) => {
+  const matchedRecipes = events.hits.filter((recipe) => {
     const recipeName = recipe.recipe.label;
     const healthLabels = recipe.recipe.healthLabels.join(" ");
     const searchItems = recipeName + " " + healthLabels;
