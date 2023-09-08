@@ -1,3 +1,5 @@
+import { useStore } from "../store";
+import { RecipeCard } from "../components/RecipeCard";
 import {
   Flex,
   Heading,
@@ -9,31 +11,27 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { RecipeCard } from "../components/RecipeCard";
-import { useState } from "react";
-import { useStore } from "../store";
 
-export const RecipeListPage = ({ clickFn }) => {
-  const events = useStore((state) => state.Events);
-  const [searchField, setSearchField] = useState("");
+export const RecipeListPage = () => {
+  const events = useStore((state) => state.events);
+  const [searchField, setSearchField, filterRecipes, setFilterRecipes] =
+    useStore((state) => [
+      state.search,
+      state.setSearch,
+      state.filter,
+      state.setFilter,
+    ]);
 
-  const [filterRecipes, setFilterRecipes] = useState("");
+  const filteredRecipes = events.hits
+    .filter((recipe) => {
+      const searchItems = recipe.recipe.label;
+      return searchItems.toLowerCase().includes(searchField.toLowerCase());
+    })
+    .filter((recipe) => {
+      const healthLabels = recipe.recipe.healthLabels.join(" ");
 
-  const handleChange = (event) => setSearchField(event.target.value);
-
-  const matchedRecipes = events.hits.filter((recipe) => {
-    const recipeName = recipe.recipe.label;
-    const healthLabels = recipe.recipe.healthLabels.join(" ");
-    const searchItems = recipeName + " " + healthLabels;
-
-    return searchItems.toLowerCase().includes(searchField.toLowerCase());
-  });
-
-  const filteredRecipes = matchedRecipes.filter((recipe) => {
-    const healthLabels = recipe.recipe.healthLabels.join(" ");
-
-    return healthLabels.includes(filterRecipes);
-  });
+      return healthLabels.includes(filterRecipes);
+    });
 
   return (
     <>
@@ -49,6 +47,8 @@ export const RecipeListPage = ({ clickFn }) => {
         </Heading>
 
         <Input
+          value={searchField}
+          onChange={(e) => setSearchField(e.target.value)}
           placeholder={"Find a recipe"}
           width={{ base: "15rem", md: "20rem" }}
           variant={"outline"}
@@ -56,14 +56,13 @@ export const RecipeListPage = ({ clickFn }) => {
           color={"hsl(220, 9%, 15%)"}
           padding={"0.5rem"}
           borderRadius={"10px"}
-          onChange={handleChange}
         />
       </Flex>
 
       <Center>
         <RadioGroup
-          onChange={setFilterRecipes}
           value={filterRecipes}
+          onChange={setFilterRecipes}
           colorScheme={"green"}
           marginBottom={"0.75rem"}
         >
@@ -78,7 +77,6 @@ export const RecipeListPage = ({ clickFn }) => {
             <Radio value="Vegan">Vegan</Radio>
             <Radio value="Pescatarian">Pescatarian</Radio>
 
-            {/* {filterRecipes ? ( */}
             <Button
               colorScheme="red"
               onClick={() => setFilterRecipes("")}
@@ -100,11 +98,7 @@ export const RecipeListPage = ({ clickFn }) => {
         padding={"1rem 2rem 1rem 2rem"}
       >
         {filteredRecipes.map((recipe) => (
-          <RecipeCard
-            recipe={recipe}
-            key={recipe.recipe.label}
-            clickFn={clickFn}
-          />
+          <RecipeCard recipe={recipe} key={recipe.recipe.label} />
         ))}
       </Flex>
     </>

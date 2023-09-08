@@ -1,3 +1,4 @@
+import { useStore } from "../store";
 import {
   Tag,
   Card,
@@ -10,13 +11,15 @@ import {
   Center,
 } from "@chakra-ui/react";
 
-export const RecipeCard = ({ recipe, clickFn }) => {
+export const RecipeCard = ({ recipe }) => {
+  const setSelectedRecipe = useStore((state) => state.setSelectedRecipe);
+
   return (
     <Card
       width="300px"
       height="550px"
       backgroundColor="hsl(0, 0%, 96%)"
-      onClick={() => clickFn(recipe)}
+      onClick={() => setSelectedRecipe(recipe)}
       cursor={"pointer"}
       transitionDuration={"200ms"}
       _hover={{ transform: "scale(1.01)" }}

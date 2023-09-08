@@ -1,3 +1,5 @@
+import { useStore } from "../store";
+import { NutritionLabel } from "../components/ui/NutritionLabel";
 import {
   Heading,
   CloseButton,
@@ -9,9 +11,10 @@ import {
   SimpleGrid,
   Center,
 } from "@chakra-ui/react";
-import { NutritionLabel } from "../components/ui/NutritionLabel";
 
-export const RecipePage = ({ recipe, clickFn }) => {
+export const RecipePage = ({ recipe }) => {
+  const setSelectedRecipe = useStore((state) => state.setSelectedRecipe);
+
   return (
     <Center>
       <Box
@@ -22,7 +25,7 @@ export const RecipePage = ({ recipe, clickFn }) => {
         <CloseButton
           colorScheme={"whiteAlpha"}
           size="md"
-          onClick={() => clickFn()}
+          onClick={() => setSelectedRecipe("")}
         />
 
         <Center>

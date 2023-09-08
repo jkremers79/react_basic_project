@@ -1,17 +1,17 @@
-import { Box } from "@chakra-ui/react";
+import { useStore } from "./store";
 import { RecipeListPage } from "./pages/RecipeListPage";
-import { useState } from "react";
 import { RecipePage } from "./pages/RecipePage";
+import { Box } from "@chakra-ui/react";
 
 export const App = () => {
-  const [selectedRecipe, setSelectedRecipe] = useState("");
+  const selectedRecipe = useStore((state) => state.selectedRecipe);
 
   return (
     <Box backgroundColor="hsl(216, 13%, 93%)">
       {selectedRecipe ? (
-        <RecipePage clickFn={setSelectedRecipe} recipe={selectedRecipe} />
+        <RecipePage recipe={selectedRecipe} />
       ) : (
-        <RecipeListPage clickFn={setSelectedRecipe} />
+        <RecipeListPage />
       )}
     </Box>
   );
